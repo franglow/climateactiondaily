@@ -6,7 +6,7 @@ setup: |
   const BOOK_SUBTITLE = 'Subtitle Placeholder';
   const SHORT_DESC = 'Short description placeholder (2–3 sentences) about the book and its value.';
   const LONG_DESC = `Long description placeholder. Use this area as back-cover text. You can write several paragraphs in Markdown, add **bold** highlights, lists, and links.`;
-  const COVER_URL = 'http://localhost:4321/images/cover.png';
+  const COVER_URL = '/images/cover.png';
   const RETAILERS = [
     { name: 'Amazon', url: '#' },
     { name: 'Bookshop', url: '#' }
@@ -43,7 +43,7 @@ setup: |
 
 <section>
 <figure class="w-full max-w-sm mx-auto overflow-hidden rounded-2xl shadow-xl ring-1 ring-stone-300">
-  <img src={COVER_URL} alt="Portada del libro" class="custom-image w-full h-auto" loading="eager" width="768" height="1024" />
+  <img src={COVER_URL} alt="Portada del libro" class="w-full h-auto" loading="eager" width="768" height="1024" />
 </figure>
 
 <div class="mt-6 flex justify-center">
