@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+
+/* .prose :where(img):not(:where([class~="not-prose"] *)) { margin: 0; } */
+
+.custom-image {
+  margin: 0;
+  display: block;
+}
