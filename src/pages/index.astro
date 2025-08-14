@@ -10,14 +10,15 @@ This guide invites us to see ourselves not as visitors, but as parts of the Eart
 When we shift our perspective to one of interconnection, even the smallest actions take on profound meaning.
 
 By blending practical steps with mindful awareness, this guide weaves environmental care with personal growth and offers a clear and achievable path toward habits rooted in gratitude, clarity, and purpose.`;
-const COVER_URL    = "/images/cover.png";
+const COVER_URL    = "/images/cover.webp";
 
 const pageTitle = BOOK_TITLE;
-const ogImage   = "/og-default.jpg";
+const pageDesc  = "A practical guide to sustainable living and personal growth.";
+const ogImage   = "/og.jpg";
 ---
 
-<BaseLayout title={pageTitle} ogImage={ogImage} lang="en">
-  <section class="grid md:grid-cols-2 gap-10 md:gap-16 items-start pt-16 pb-10 md:pt-24 md:pb-14">
+<BaseLayout title={pageTitle} description={pageDesc} ogImage={ogImage} lang="en">
+  <section class="grid md:grid-cols-2 gap-10 md:gap-16 items-start pt-20 pb-12 md:pt-28 md:pb-16">
     <!-- Left: text -->
     <div class="max-w-prose">
       <h1 class="font-serif text-3xl md:text-4xl leading-tight tracking-tight">
@@ -27,7 +28,7 @@ const ogImage   = "/og-default.jpg";
         {BOOK_SUB}
       </p>
 
-      <!-- Description block (sin tabs, sin buttons) -->
+      <!-- Description block -->
       <div class="mt-8">
         <h3 class="text-sm font-semibold tracking-wide text-base-subtle">Description</h3>
         <div class="h-px bg-base-line my-3"></div>
