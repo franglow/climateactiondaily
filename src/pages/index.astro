@@ -1,60 +1,44 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import BuyButtons from "../components/BuyButtons.astro";
 import CoverCard from "../components/CoverCard.astro";
 
-// —— Content (reemplaza por tu copy real) ——
+// —— Content (editá con tu copy real) ——
 const BOOK_TITLE   = "Climate Change: A Guide to Everyday Action";
 const BOOK_SUB     = "Practical Steps for Sustainable Living";
-const SHORT_DESC   = "What if your personal well-being and the planet’s health were intertwined? This guide reframes our role as part of Earth and offers a clear path of small, meaningful habits.";
-const LONG_DESC    = `What if your personal well-being and the planet’s health were intertwined? 
-This guide invites us to see ourselves not as visitors, but as parts of the Earth itself. 
-When we shift our perspective to one of interconnection, even the smallest actions take on profound meaning.\n
+const LONG_DESC    = `What if your personal well-being and the planet’s health were intertwined?
+This guide invites us to see ourselves not as visitors, but as parts of the Earth itself.
+When we shift our perspective to one of interconnection, even the smallest actions take on profound meaning.
+
 By blending practical steps with mindful awareness, this guide weaves environmental care with personal growth and offers a clear and achievable path toward habits rooted in gratitude, clarity, and purpose.`;
 const COVER_URL    = "/images/cover.png";
-const RETAILERS    = [{ name: "Amazon", url: "#" }, { name: "Bookshop", url: "#" }];
 
-const pageTitle = `${BOOK_TITLE}`;
-const pageDesc  = SHORT_DESC;
+const pageTitle = BOOK_TITLE;
 const ogImage   = "/og-default.jpg";
 ---
 
-<BaseLayout title={pageTitle} description={pageDesc} ogImage={ogImage} lang="en">
-  <section class="grid md:grid-cols-2 gap-10 md:gap-16 items-start py-10 md:py-14">
+<BaseLayout title={pageTitle} ogImage={ogImage} lang="en">
+  <section class="grid md:grid-cols-2 gap-10 md:gap-16 items-start pt-16 pb-10 md:pt-24 md:pb-14">
     <!-- Left: text -->
     <div class="max-w-prose">
-      <h1 class="font-serif text-4xl md:text-5xl leading-tight tracking-tight">
+      <h1 class="font-serif text-3xl md:text-4xl leading-tight tracking-tight">
         {BOOK_TITLE}
       </h1>
       <p class="mt-2 text-base md:text-lg font-semibold text-base-ink">
         {BOOK_SUB}
       </p>
 
-      <p class="mt-5 text-base text-base-ink/90 leading-relaxed">
-        {SHORT_DESC}
-      </p>
-
-      <BuyButtons retailers={RETAILERS} />
-
-      <!-- Tabs -->
+      <!-- Description block (sin tabs, sin buttons) -->
       <div class="mt-8">
-        <div role="tablist" aria-label="Book info" class="flex items-center gap-6 border-b border-base-line">
-          <button role="tab" aria-selected="true" class="-mb-px border-b-2 border-black pb-3 text-sm md:text-base">
-            Description
-          </button>
-          <button role="tab" aria-selected="false" class="pb-3 text-sm md:text-base text-base-subtle hover:text-base-ink">
-            Praise
-          </button>
-        </div>
-
-        <div class="prose prose-stone max-w-none mt-6">
+        <h3 class="text-sm font-semibold tracking-wide text-base-subtle">Description</h3>
+        <div class="h-px bg-base-line my-3"></div>
+        <div class="prose prose-stone max-w-none">
           <p>{LONG_DESC}</p>
         </div>
       </div>
     </div>
 
     <!-- Right: cover -->
-    <div>
+    <div class="md:pl-4">
       <CoverCard src={COVER_URL} alt="Book cover" />
       <div class="mt-6 flex justify-center">
         <a href="#" class="inline-flex rounded-full px-5 py-3 bg-base-prime text-white hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30">
