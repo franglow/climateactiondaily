@@ -32,6 +32,12 @@ const domain = 'climateactiondaily.com';
 
     <!-- Plausible (analytics) -->
     <script defer data-domain={domain} src="https://plausible.io/js/script.js"></script>
+
+    <link rel="preload"
+          as="image"
+          href="/images/cover-768.webp"
+          imagesrcset="/images/cover-480.webp 480w, /images/cover-768.webp 768w, /images/cover-1024.webp 1024w"
+          imagesizes="(min-width: 768px) 340px, 80vw">
   </head>
   <body class="bg-base-bg text-base-ink font-sans antialiased">
     <main class="mx-auto max-w-6xl px-4 md:px-6">
