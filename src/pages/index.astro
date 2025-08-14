@@ -28,17 +28,15 @@ const ogImage   = "/og.jpg";
       <h1 class="font-serif text-3xl md:text-4xl leading-tight tracking-tight">
         {BOOK_TITLE}
       </h1>
-      <p class="mt-2 text-base md:text-lg font-semibold text-base-ink">
-        {BOOK_SUB}
-      </p>
+      <p class="mt-2 text-base md:text-lg font-semibold text-base-ink/90">{BOOK_SUB}</p>
 
       <!-- Description block -->
       <div class="mt-8">
         <h2 class="text-sm font-semibold tracking-wide text-base-subtle">Description</h2>
         <div class="h-px bg-base-line my-3"></div>
         <div class="prose prose-stone max-w-none">
-          {LONG_DESC.split('\n\n').map(paragraph => (
-            <p>{paragraph}</p>
+          {LONG_DESC.split('\n\n').map((p, i) => (
+            <p class={i === 0 ? 'mt-0' : 'mt-6'}>{p}</p>
           ))}
         </div>
       </div>
