@@ -26,15 +26,6 @@ const ogImage   = "/og.jpg";
     <!-- Right: cover (moved first for mobile stacking) -->
     <div class="order-1 md:order-2 md:pl-4 md:sticky md:top-28">
       <CoverCard src={COVER_URL} alt={`Cover of ${BOOK_TITLE}`} />
-      <div class="mt-6 flex justify-center">
-        <a
-          href="#"
-          aria-label="Get the guide"
-          class="hidden md:inline-flex rounded-full px-5 py-3 bg-base-prime text-white hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
-        >
-          Get the guide
-        </a>
-      </div>
     </div>
 
     <!-- Left: text (moved second for mobile stacking) -->
@@ -71,7 +62,7 @@ const ogImage   = "/og.jpg";
         <a
           href="#"
           aria-label="Get the guide"
-          class="inline-flex rounded-full px-5 py-3 bg-base-prime text-white hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
+          class="inline-flex rounded-full px-5 md:px-10 py-3 bg-base-prime text-white hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
         >
           Get the guide
         </a>
