@@ -1,14 +1,25 @@
 ---
 const retailers = Astro.props.retailers ?? [];
+const variant = Astro.props.variant ?? 'default';
+
+// layout variations
+const containerClass = variant === 'single'
+  ? 'mt-4 flex justify-center'
+  : 'mt-6 flex flex-wrap gap-3';
 ---
 
 {retailers.length > 0 && (
-  <div class="mt-6 flex flex-wrap gap-3">
+  <div class={containerClass}>
     {retailers.map((r) => {
       const isAmazon = String(r.name).toLowerCase().startsWith('amazon');
-      const baseClasses = 'inline-flex items-center justify-center px-4 py-2 text-sm font-medium focus:outline-none transition';
-      const amazonClasses = baseClasses + ' bg-[#F9BF4F] text-black border border-transparent rounded-md hover:opacity-95 focus-visible:ring-2 focus-visible:ring-black/20';
-      const defaultClasses = baseClasses + ' rounded-full border border-base-line bg-white hover:bg-black hover:text-white hover:border-black focus-visible:ring-2 focus-visible:ring-black/30';
+      const baseClasses = 'inline-flex items-center justify-center text-sm font-medium focus:outline-none transition';
+
+      // make the single variant a bit larger
+      const amazonClasses = variant === 'single'
+        ? baseClasses + ' px-5 py-3 bg-[#F9BF4F] text-black border border-transparent rounded-md hover:opacity-95 focus-visible:ring-2 focus-visible:ring-black/20'
+        : baseClasses + ' px-4 py-2 bg-[#F9BF4F] text-black border border-transparent rounded-md hover:opacity-95 focus-visible:ring-2 focus-visible:ring-black/20';
+
+      const defaultClasses = baseClasses + ' px-4 py-2 rounded-full border border-base-line bg-white hover:bg-black hover:text-white hover:border-black focus-visible:ring-2 focus-visible:ring-black/30';
 
       return (
         <a
