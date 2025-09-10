@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CoverCard from "../components/CoverCard.astro";
+import BuyButtons from "../components/BuyButtons.astro";
 
 // —— Content (editá con tu copy real) ——
 const BOOK_TITLE   = "Climate Change: A Guide to Everyday Action";
@@ -15,6 +16,11 @@ Change begins with acknowledging who we are.
 
 We, ourselves, are Earth.`;
 const COVER_URL    = "/images/cover.webp";
+
+const RETAILERS = [
+  { name: "Amazon", url: "https://www.amazon.com/" },
+  { name: "Bookshop", url: "https://bookshop.org/" }
+];
 
 const pageTitle = BOOK_TITLE;
 const pageDesc  = "A practical guide to sustainable living and personal growth.";
@@ -66,6 +72,11 @@ const ogImage   = "/og.jpg";
         >
           Get the guide
         </a>
+      </div>
+
+      <!-- Retailers section -->
+      <div class="mt-8">
+        <BuyButtons retailers={RETAILERS} />
       </div>
     </div>
   </section>

@@ -1,15 +1,21 @@
 ---
 const retailers = Astro.props.retailers ?? [];
 ---
-<div class="mt-6 flex flex-wrap gap-3">
-  {retailers.map((r) => (
-    <a
-      href={r.url}
-      aria-label={`Buy on ${r.name}`}
-      class="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm border border-base-line bg-white hover:bg-black hover:text-white hover:border-black focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30 transition"
-      rel="noopener noreferrer"
-    >
-      {r.name}
-    </a>
-  ))}
-</div>
+
+{retailers.length > 0 && (
+  <div class="mt-6 flex flex-wrap gap-3">
+    {retailers.map((r) => (
+      <a
+        href={r.url}
+        target="_blank"
+        rel="noopener noreferrer nofollow sponsored"
+        aria-label={`Get the guide on ${r.name}`}
+        class="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm border border-base-line bg-white hover:bg-black hover:text-white hover:border-black focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30 transition"
+        data-cta="retailer"
+        data-retailer={r.name}
+      >
+        {r.name}
+      </a>
+    ))}
+  </div>
+)}

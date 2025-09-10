@@ -1,33 +1,26 @@
 ---
-const { src = "/images/cover.png", alt = "Cover of the book" } = Astro.props;
-// Derive a base name if you want to keep PNG/JPG originals. For now, we’ll point to optimized webp variants you export once.
-// Recommended to export three sizes: 480, 768, 1024px width (WebP). Keep your PNG as fallback.
-const webp320  = "/images/cover-320.webp";
-const webp480  = "/images/cover-480.webp";
-const webp768  = "/images/cover-768.webp";
-const webp1024 = "/images/cover-1024.webp";
+import { Image } from 'astro:assets';
+const {
+  src = '/images/cover.png',
+  alt = 'Cover of the book',
+  eager = true,
+} = Astro.props;
+
+const sizes = "(min-width: 768px) 340px, 80vw";
 ---
 
 <figure>
   <div class="w-full max-w-[240px] md:max-w-[340px] mx-auto overflow-hidden rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] ring-1 ring-base-line bg-white">
-    <picture>
-      <!-- Prefer WebP -->
-      <source
-        srcset={`${webp320} 320w, ${webp480} 480w, ${webp768} 768w, ${webp1024} 1024w`}
-        type="image/webp" />
-      <!-- Fallback to the original (PNG/JPG) -->
-      <img
-        src={src}
-        srcset={`${src} 768w`}
-        sizes="(min-width: 768px) 340px, 80vw"  /* ~mobile 240–320px */
-        alt={alt}
-        width="768"
-        height="1024"
-        class="w-full h-auto object-contain"
-        decoding="async"
-        fetchpriority="high"
-        loading="eager"
-      />
-    </picture>
+    <Image
+      src={src}
+      alt={alt}
+      sizes={sizes}
+      widths={[320, 480, 768, 1024]}
+      width={768}
+      height={1024}
+      class="w-full h-auto object-contain"
+      loading={eager ? 'eager' : 'lazy'}
+      priority={eager}
+    />
   </div>
 </figure>
