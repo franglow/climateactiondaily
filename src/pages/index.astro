@@ -44,16 +44,19 @@ const ogImage   = "/og.jpg";
       </h1>
       <p class="mt-2 text-base md:text-lg font-semibold text-base-ink/90">{BOOK_SUB}</p>
 
-      <!-- Mobile CTA + inline buy buttons (mobile only) -->
-      <div class="mt-4 flex flex-col justify-start md:hidden">
-        <div>
-          <h3 class="text-lg md:text-xl font-semibold leading-tight">
+      <!-- CTA panel: separate mobile full-bleed and desktop centered containers -->
+      <div class="mt-6">
+        <!-- Mobile: full-bleed panel (stretches to viewport width) -->
+        <div class="block md:hidden w-screen -ml-4 mr-0 bg-white border-t border-b border-[color:var(--base-line)] py-6 px-4 text-center shadow-sm">
+          <h3 class="text-base font-semibold leading-tight">
             {`Get Your Copy of ${BOOK_TITLE}`}
           </h3>
-          <div class="mt-3">
-            <BuyButtons retailers={amazonOnly} />
+          <div class="mt-4 flex justify-center">
+            <BuyButtons retailers={amazonOnly} variant="single" />
           </div>
         </div>
+
+  <!-- Desktop: centered boxed panel (moved below About on desktop) -->
       </div>
 
       <!-- About -->
@@ -69,17 +72,19 @@ const ogImage   = "/og.jpg";
         </div>
       </div>
 
-      <!-- Desktop CTA -->
-      <div class="mt-8 hidden md:flex justify-start">
-        <div>
+      <!-- Desktop CTA (placed below About on desktop) -->
+      <div class="hidden md:block mt-8">
+        <div class="max-w-3xl mx-auto bg-white border border-[color:var(--base-line)] rounded-md py-6 px-6 text-center shadow-sm">
           <h3 class="text-lg md:text-xl font-semibold leading-tight">
             {`Get Your Copy of ${BOOK_TITLE}`}
           </h3>
-          <div class="mt-3">
-            <BuyButtons retailers={amazonOnly} />
+          <div class="mt-4 flex justify-center">
+            <BuyButtons retailers={amazonOnly} variant="single" />
           </div>
         </div>
       </div>
+
+  <!-- (desktop CTA removed; single CTA panel above used for all viewports) -->
     </div>
   </section>
 
