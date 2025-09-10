@@ -10,6 +10,8 @@
   --base-prime: #0f766e;    /* deep teal */
   --base-line:  #dcd7ce;    /* hairline */
   --base-subtle:#6b7280;    /* muted */
+  /* CTA panel: slightly darker than page background */
+  --base-cta:    #f1ede6;
 }
 
 @layer base {
