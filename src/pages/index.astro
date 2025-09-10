@@ -14,12 +14,13 @@ By blending practical steps with mindful awareness, this guide weaves environmen
 
 Change begins with acknowledging who we are.
 
-We, ourselves, are Earth.`;
+We are Earth.`; // tightened
 const COVER_URL    = "/images/cover.webp";
 
-const RETAILERS = [
-  { name: "Amazon", url: "https://www.amazon.com/" },
-  { name: "Bookshop", url: "https://bookshop.org/" }
+const retailers = [
+  { name: "Amazon (Paperback)", url: "https://www.amazon.com/dp/XXXXXXX" },
+  { name: "Kindle", url: "https://www.amazon.com/dp/XXXXXXX" },
+  // add more when ready
 ];
 
 const pageTitle = BOOK_TITLE;
@@ -28,34 +29,35 @@ const ogImage   = "/og.jpg";
 ---
 
 <BaseLayout title={pageTitle} description={pageDesc} ogImage={ogImage} lang="en">
-  <section class="grid md:grid-cols-2 gap-8 md:gap-16 items-start pt-10 pb-10 md:pt-20 md:pb-14">
-    <!-- Right: cover (moved first for mobile stacking) -->
+  <section class="grid md:grid-cols-2 gap-8 md:gap-12 items-start pt-10 pb-10 md:pt-20 md:pb-14">
+    <!-- Right: cover -->
     <div class="order-1 md:order-2 md:pl-4 md:sticky md:top-28">
-      <CoverCard src={COVER_URL} alt={`Cover of ${BOOK_TITLE}`} />
+      <CoverCard src={COVER_URL} alt={`Cover of ${BOOK_TITLE}`} eager={true} />
     </div>
 
-    <!-- Left: text (moved second for mobile stacking) -->
+    <!-- Left: text -->
     <div class="order-2 md:order-1 max-w-prose">
       <h1 class="font-serif text-3xl md:text-4xl leading-tight tracking-tight">
         {BOOK_TITLE}
       </h1>
       <p class="mt-2 text-base md:text-lg font-semibold text-base-ink/90">{BOOK_SUB}</p>
 
-      <!-- Mobile CTA immediately after subtitle to keep CTA above the fold on phones -->
+      <!-- Mobile CTA -->
       <div class="mt-4 flex justify-start md:hidden">
         <a
-          href="#"
-          aria-label="Get the guide"
+          href="#buy"
           class="inline-flex rounded-full px-5 py-3 bg-base-prime text-white hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
         >
           Get the guide
         </a>
       </div>
 
-      <!-- About the book block -->
+      <!-- About -->
       <div class="mt-8">
         <h2 class="text-sm font-semibold tracking-wide text-base-subtle">About the book</h2>
         <div class="h-px bg-base-line my-3"></div>
+
+        <!-- If you enable Tailwind Typography, keep prose; otherwise style with utilities -->
         <div class="prose prose-stone max-w-none">
           {LONG_DESC.split('\n\n').map((p, i) => (
             <p class={i === 0 ? 'mt-0' : 'mt-6'}>{p}</p>
@@ -63,21 +65,21 @@ const ogImage   = "/og.jpg";
         </div>
       </div>
 
-      <!-- Add CTA under the left column content (desktop visible) -->
+      <!-- Desktop CTA -->
       <div class="mt-8 hidden md:flex justify-start">
         <a
-          href="#"
-          aria-label="Get the guide"
+          href="#buy"
           class="inline-flex rounded-full px-5 md:px-10 py-3 bg-base-prime text-white hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
         >
           Get the guide
         </a>
       </div>
-
-      <!-- Retailers section -->
-      <div class="mt-8">
-        <BuyButtons retailers={RETAILERS} />
-      </div>
     </div>
+  </section>
+
+  <!-- Buy section -->
+  <section id="buy" class="pt-2 pb-12">
+    <h2 class="sr-only">Buy the book</h2>
+    <BuyButtons retailers={retailers} />
   </section>
 </BaseLayout>
