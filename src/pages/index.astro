@@ -18,10 +18,12 @@ We are Earth.`; // tightened
 const COVER_URL    = "/images/cover.webp";
 
 const retailers = [
-  { name: "Amazon (Paperback)", url: "https://www.amazon.com/dp/XXXXXXX" },
-  { name: "Kindle", url: "https://www.amazon.com/dp/XXXXXXX" },
+  { name: "Amazon", url: "https://www.amazon.com/dp/XXXXXXX" },
   // add more when ready
 ];
+
+// single prominent CTA (Amazon) used under the title
+const amazonOnly = retailers.filter((r) => String(r.name).toLowerCase().startsWith('amazon'));
 
 const pageTitle = BOOK_TITLE;
 const pageDesc  = "A practical guide to sustainable living and personal growth.";
@@ -42,14 +44,16 @@ const ogImage   = "/og.jpg";
       </h1>
       <p class="mt-2 text-base md:text-lg font-semibold text-base-ink/90">{BOOK_SUB}</p>
 
-      <!-- Mobile CTA -->
-      <div class="mt-4 flex justify-start md:hidden">
-        <a
-          href="#buy"
-          class="inline-flex rounded-full px-5 py-3 bg-base-prime text-white hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
-        >
-          Get the guide
-        </a>
+      <!-- Mobile CTA + inline buy buttons (mobile only) -->
+      <div class="mt-4 flex flex-col justify-start md:hidden">
+        <div>
+          <h3 class="text-lg md:text-xl font-semibold leading-tight">
+            {`Get Your Copy of ${BOOK_TITLE}`}
+          </h3>
+          <div class="mt-3">
+            <BuyButtons retailers={amazonOnly} />
+          </div>
+        </div>
       </div>
 
       <!-- About -->
@@ -67,19 +71,17 @@ const ogImage   = "/og.jpg";
 
       <!-- Desktop CTA -->
       <div class="mt-8 hidden md:flex justify-start">
-        <a
-          href="#buy"
-          class="inline-flex rounded-full px-5 md:px-10 py-3 bg-base-prime text-white hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
-        >
-          Get the guide
-        </a>
+        <div>
+          <h3 class="text-lg md:text-xl font-semibold leading-tight">
+            {`Get Your Copy of ${BOOK_TITLE}`}
+          </h3>
+          <div class="mt-3">
+            <BuyButtons retailers={amazonOnly} />
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Buy section -->
-  <section id="buy" class="pt-2 pb-12">
-    <h2 class="sr-only">Buy the book</h2>
-    <BuyButtons retailers={retailers} />
-  </section>
+  
 </BaseLayout>
