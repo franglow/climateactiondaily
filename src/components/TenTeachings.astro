@@ -1,0 +1,30 @@
+---
+interface Teaching { title: string; desc: string }
+interface Props {
+  id?: string;
+  title?: string;
+  items: Teaching[];
+  headingLevel?: 2 | 3; // para elegir <h2> o <h3> como título de sección
+}
+const { id = "ten-teachings", title = "10 Things This Guide Will Teach You", items, headingLevel = 2 } = Astro.props;
+const H = `h${headingLevel}` as keyof HTMLElementTagNameMap;
+---
+<section id={id} aria-labelledby={`${id}-title`} class="mt-20 md:mt-24">
+  <div class="max-w-3xl mx-auto">
+    <header class="text-center">
+      <H id={`${id}-title`} class="font-serif text-2xl md:text-3xl font-bold tracking-tight">
+        {title}
+      </H>
+      <div class="h-px bg-[color:var(--base-line)] mt-4 mb-8"></div>
+    </header>
+
+    <ol class="list-decimal list-outside pl-6 space-y-6 text-base leading-7">
+      {items.map((it) => (
+        <li>
+          <h3 class="font-semibold text-[color:var(--base-ink)]">{it.title}</h3>
+          <p class="mt-1 text-[color:var(--base-ink)]/90">{it.desc}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

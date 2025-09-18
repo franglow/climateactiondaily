@@ -2,6 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CoverCard from "../components/CoverCard.astro";
 import BuyButtons from "../components/BuyButtons.astro";
+import TenTeachings from "../components/TenTeachings.astro";
+import { teachings_en } from "../data/teachings";
 
 // —— Content (editá con tu copy real) ——
 const BOOK_TITLE   = "Climate Change: A Guide to Everyday Action";
@@ -87,6 +89,8 @@ const ogImage   = "/og.jpg";
   <!-- (desktop CTA removed; single CTA panel above used for all viewports) -->
     </div>
   </section>
+
+  <TenTeachings items={teachings_en} headingLevel={2} />
 
   
 </BaseLayout>
