@@ -1,0 +1,51 @@
+---
+import CoverCard from "./CoverCard.astro";
+import BuyButtons from "./BuyButtons.astro";
+
+interface Retailer { name: string; url: string }
+interface Props {
+  title: string;
+  subtitle: string;
+  coverUrl: string;
+  retailers: Retailer[];
+}
+const { title, subtitle, coverUrl, retailers } = Astro.props;
+const amazonOnly = retailers.filter((r) => r.name.toLowerCase().startsWith("amazon"));
+---
+<section class="grid md:grid-cols-2 gap-8 md:gap-12 items-start pt-10 pb-10 md:pt-20 md:pb-14">
+  <div class="order-1 md:order-2 md:pl-4 md:sticky md:top-28">
+    <CoverCard src={coverUrl} alt={`Cover of ${title}`} eager={true} />
+  </div>
+
+  <div class="order-2 md:order-1 max-w-prose">
+    <h1 class="font-serif text-3xl md:text-4xl leading-tight tracking-tight">{title}</h1>
+    <p class="mt-2 text-base md:text-lg font-semibold text-base-ink/90">{subtitle}</p>
+
+    <!-- CTA mobile -->
+    <div class="mt-6">
+      <div class="block md:hidden w-screen -ml-4 mr-0 bg-[color:var(--base-cta)] py-6 px-4 text-center">
+        <h3 class="text-base font-semibold leading-tight">
+          {`Get Your Copy of ${title}`}
+        </h3>
+        <div class="mt-4 flex justify-center">
+          <BuyButtons retailers={amazonOnly} variant="single" />
+        </div>
+      </div>
+    </div>
+
+    <!-- About (slot opcional para insertar después desde la página) -->
+    <slot name="below-title" />
+
+    <!-- CTA desktop -->
+    <div class="hidden md:block mt-8">
+      <div class="max-w-3xl mx-auto bg-[color:var(--base-cta)] rounded-md py-6 px-6 text-center">
+        <h3 class="text-lg md:text-xl font-semibold leading-tight">
+          {`Get Your Copy of ${title}`}
+        </h3>
+        <div class="mt-4 flex justify-center">
+          <BuyButtons retailers={amazonOnly} variant="single" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

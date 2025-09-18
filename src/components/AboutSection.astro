@@ -1,0 +1,16 @@
+---
+interface Props {
+  heading?: string;
+  paragraphs: string[];
+}
+const { heading = "About the book", paragraphs } = Astro.props;
+---
+<section class="mt-8">
+  <h2 class="text-sm font-semibold tracking-wide text-base-subtle">{heading}</h2>
+  <div class="h-px bg-base-line my-3"></div>
+  <div class="prose prose-stone max-w-none">
+    {paragraphs.map((p, i) => (
+      <p class={i === 0 ? 'mt-0' : 'mt-6'}>{p}</p>
+    ))}
+  </div>
+</section>

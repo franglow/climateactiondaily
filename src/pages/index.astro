@@ -1,96 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import CoverCard from "../components/CoverCard.astro";
-import BuyButtons from "../components/BuyButtons.astro";
+import HeroSection from "../components/HeroSection.astro";
+import AboutSection from "../components/AboutSection.astro";
 import TenTeachings from "../components/TenTeachings.astro";
+import { book, retailers } from "../data/site";
 import { teachings_en } from "../data/teachings";
 
-// —— Content (editá con tu copy real) ——
-const BOOK_TITLE   = "Climate Change: A Guide to Everyday Action";
-const BOOK_SUB     = "Practical Steps for Sustainable Living";
-const LONG_DESC    = `What if your personal well-being and the planet's health were intertwined?
-
-This guide invites us to see ourselves not as visitors, but as parts of the Earth itself. When we shift our perspective to one of interconnection, even the smallest actions take on profound meaning.
-
-By blending practical steps with mindful awareness, this guide weaves environmental care with personal growth and offers a clear and achievable path toward habits rooted in gratitude, clarity, and purpose.
-
-Change begins with acknowledging who we are.
-
-We are Earth.`; // tightened
-const COVER_URL    = "/images/cover.webp";
-
-const retailers = [
-  { name: "Amazon", url: "https://www.amazon.com/dp/XXXXXXX" },
-  // add more when ready
-];
-
-// single prominent CTA (Amazon) used under the title
-const amazonOnly = retailers.filter((r) => String(r.name).toLowerCase().startsWith('amazon'));
-
-const pageTitle = BOOK_TITLE;
-const pageDesc  = "A practical guide to sustainable living and personal growth.";
-const ogImage   = "/og.jpg";
+const pageTitle = book.title;
+const pageDesc  = book.description;
+const ogImage   = book.ogImage;
 ---
-
 <BaseLayout title={pageTitle} description={pageDesc} ogImage={ogImage} lang="en">
-  <section class="grid md:grid-cols-2 gap-8 md:gap-12 items-start pt-10 pb-10 md:pt-20 md:pb-14">
-    <!-- Right: cover -->
-    <div class="order-1 md:order-2 md:pl-4 md:sticky md:top-28">
-      <CoverCard src={COVER_URL} alt={`Cover of ${BOOK_TITLE}`} eager={true} />
-    </div>
-
-    <!-- Left: text -->
-    <div class="order-2 md:order-1 max-w-prose">
-      <h1 class="font-serif text-3xl md:text-4xl leading-tight tracking-tight">
-        {BOOK_TITLE}
-      </h1>
-      <p class="mt-2 text-base md:text-lg font-semibold text-base-ink/90">{BOOK_SUB}</p>
-
-      <!-- CTA panel: separate mobile full-bleed and desktop centered containers -->
-      <div class="mt-6">
-        <!-- Mobile: full-bleed panel (stretches to viewport width) -->
-  <div class="block md:hidden w-screen -ml-4 mr-0 bg-[color:var(--base-cta)] py-6 px-4 text-center">
-          <h3 class="text-base font-semibold leading-tight">
-            {`Get Your Copy of ${BOOK_TITLE}`}
-          </h3>
-          <div class="mt-4 flex justify-center">
-            <BuyButtons retailers={amazonOnly} variant="single" />
-          </div>
-        </div>
-
-  <!-- Desktop: centered boxed panel (moved below About on desktop) -->
-      </div>
-
-      <!-- About -->
-      <div class="mt-8">
-        <h2 class="text-sm font-semibold tracking-wide text-base-subtle">About the book</h2>
-        <div class="h-px bg-base-line my-3"></div>
-
-        <!-- If you enable Tailwind Typography, keep prose; otherwise style with utilities -->
-        <div class="prose prose-stone max-w-none">
-          {LONG_DESC.split('\n\n').map((p, i) => (
-            <p class={i === 0 ? 'mt-0' : 'mt-6'}>{p}</p>
-          ))}
-        </div>
-      </div>
-
-      <!-- Desktop CTA (placed below About on desktop) -->
-      <div class="hidden md:block mt-8">
-  <div class="max-w-3xl mx-auto bg-[color:var(--base-cta)] rounded-md py-6 px-6 text-center">
-          <h3 class="text-lg md:text-xl font-semibold leading-tight">
-            {`Get Your Copy of ${BOOK_TITLE}`}
-          </h3>
-          <div class="mt-4 flex justify-center">
-            <BuyButtons retailers={amazonOnly} variant="single" />
-          </div>
-        </div>
-      </div>
-
-  <!-- (desktop CTA removed; single CTA panel above used for all viewports) -->
-    </div>
-  </section>
+  <HeroSection title={book.title} subtitle={book.subtitle} coverUrl={book.coverUrl} retailers={retailers}>
+    <Fragment slot="below-title">
+      <AboutSection paragraphs={book.longDesc} />
+    </Fragment>
+  </HeroSection>
 
   <TenTeachings items={teachings_en} headingLevel={2} />
-
-  
 </BaseLayout>
