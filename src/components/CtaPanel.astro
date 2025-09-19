@@ -1,0 +1,15 @@
+---
+import BuyButtons from "./BuyButtons.astro";
+
+interface Retailer { name: string; url: string }
+interface Props { title: string; retailers: Retailer[] }
+const { title, retailers } = Astro.props;
+---
+<section class="mt-10 md:mt-12">
+  <div class="max-w-xl mx-auto bg-[color:var(--base-cta)] rounded-md py-6 px-6 text-center">
+    <h3 class="text-lg md:text-xl font-semibold leading-tight">{title}</h3>
+    <div class="mt-4 flex justify-center">
+      <BuyButtons retailers={retailers} variant="single" />
+    </div>
+  </div>
+</section>

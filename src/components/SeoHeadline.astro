@@ -1,0 +1,18 @@
+---
+interface Props {
+  headline: string; // será el H1 de la página
+  sub: string;
+  id?: string;
+}
+const { headline, sub, id = "intro-headline" } = Astro.props;
+---
+<section id={id} aria-labelledby={`${id}-title`} class="mt-8 md:mt-10">
+  <header class="max-w-3xl mx-auto text-center">
+    <h1 id={`${id}-title`} class="font-serif text-3xl md:text-4xl leading-tight tracking-tight">
+      {headline}
+    </h1>
+    <p class="mt-4 text-base md:text-lg text-base-ink/90">
+      {sub}
+    </p>
+  </header>
+</section>

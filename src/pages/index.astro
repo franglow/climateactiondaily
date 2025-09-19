@@ -1,21 +1,55 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HeroSection from "../components/HeroSection.astro";
+// import HeroSection from "../components/HeroSection.astro";
+import CoverCard from "../components/CoverCard.astro";
 import AboutSection from "../components/AboutSection.astro";
 import TenTeachings from "../components/TenTeachings.astro";
+import CtaPanel from "../components/CtaPanel.astro";
+import SeoHeadline from "../components/SeoHeadline.astro";
+import JsonLd from "../components/JsonLd.astro";
 import { book, retailers } from "../data/site";
+import { heroHeadline, heroSub } from "../data/site";
 import { teachings_en } from "../data/teachings";
+import { jsonLd } from "../data/seo";
 
 const pageTitle = book.title;
 const pageDesc  = book.description;
 const ogImage   = book.ogImage;
+
+const amazonOnly = retailers.filter(r => r.name.toLowerCase().startsWith("amazon"));
 ---
 <BaseLayout title={pageTitle} description={pageDesc} ogImage={ogImage} lang="en">
-  <HeroSection title={book.title} subtitle={book.subtitle} coverUrl={book.coverUrl} retailers={retailers}>
-    <Fragment slot="below-title">
-      <AboutSection paragraphs={book.longDesc} />
-    </Fragment>
-  </HeroSection>
+  <!-- 1) Cover centered -->
+  <section class="pt-10 md:pt-16">
+    <div class="max-w-md mx-auto">
+      <CoverCard src={book.coverUrl} alt={`Cover of ${book.title}`} eager={true} />
+    </div>
+  </section>
 
+  <SeoHeadline headline={heroHeadline} sub={heroSub} />
+
+  <!-- 2) CTA -->
+  <CtaPanel title={`Get Your Copy of ${pageTitle}`} retailers={amazonOnly} />
+
+  <!-- 3) About / Intro -->
+  <section class="mt-12 md:mt-16">
+    <h1 class="font-serif text-3xl md:text-4xl leading-tight tracking-tight text-center">
+      {book.title}
+    </h1>
+    <p class="mt-2 text-base md:text-lg font-semibold text-base-ink/90 text-center">
+      {book.subtitle}
+    </p>
+    <div class="mt-8 max-w-3xl mx-auto">
+      <AboutSection paragraphs={book.longDesc} />
+    </div>
+  </section>
+
+  <!-- 4) Ten Teachings -->
   <TenTeachings items={teachings_en} headingLevel={2} />
+
+  <!-- 5) CTA again -->
+  <CtaPanel title={`Get Your Copy of ${pageTitle}`} retailers={amazonOnly} />
+
+  <JsonLd data={jsonLd.itemList} />
+  <JsonLd data={jsonLd.book} />
 </BaseLayout>
