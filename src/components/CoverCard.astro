@@ -10,7 +10,7 @@ const sizes = "(min-width: 768px) 340px, 80vw";
 ---
 
 <figure>
-  <div class="w-full max-w-[240px] md:max-w-[340px] mx-auto overflow-hidden rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] ring-1 ring-base-line bg-white">
+  <div class="w-full max-w-[240px] md:max-w-[340px] mx-auto overflow-hidden rounded-2xl">
     <Image
       src={src}
       alt={alt}
@@ -18,7 +18,7 @@ const sizes = "(min-width: 768px) 340px, 80vw";
       widths={[320, 480, 768, 1024]}
       width={768}
       height={1024}
-      class="w-full h-auto object-contain"
+      class="w-full h-full object-cover"
       loading={eager ? 'eager' : 'lazy'}
       priority={eager}
     />
