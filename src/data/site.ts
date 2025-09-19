@@ -3,7 +3,7 @@ export const book = {
   subtitle: "Practical Steps for Sustainable Living",
   description:
     "A practical guide to sustainable living and personal growth.",
-  coverUrl: "/images/cover.webp",
+  coverUrl: "/images/climate-change.webp",
   ogImage: "/og.jpg",
   longDesc: [
     "What if your personal well-being and the planet's health were intertwined?",
