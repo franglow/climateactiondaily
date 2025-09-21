@@ -19,7 +19,7 @@ export const retailers = [
 ];
 
 export const heroHeadline =
-  "Facing Climate Change: A Practical & Mindful Guide to Sustainable Living, Inner Balance & Everyday Climate Action";
+  "Climate Change: A Guide to Everyday Action. A Practical & Mindful Steps to Sustainable Living, Inner Balance & Everyday Climate Action";
 
 export const heroSub =
   "This transformative guide helps you take meaningful climate action in your daily life — through conscious habits, emotional clarity, spiritual alignment, and sustainable routines designed to reconnect you with the Earth.";

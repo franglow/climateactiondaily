@@ -29,13 +29,13 @@ const amazonOnly = retailers.filter(r => r.name.toLowerCase().startsWith("amazon
   <SeoHeadline headline={heroHeadline} sub={heroSub} />
 
   <!-- 2) CTA -->
-  <CtaPanel title={`Get Your Copy of ${pageTitle}`} retailers={amazonOnly} />
+  <CtaPanel title={`Get Your Copy of ${pageTitle}`} retailers={amazonOnly}/>
 
   <!-- 3) About / Intro -->
   <section class="mt-12 md:mt-16">
-    <h1 class="font-serif text-3xl md:text-4xl leading-tight tracking-tight text-center">
+    <h2 class="font-serif text-3xl md:text-4xl leading-tight tracking-tight text-center">
       {book.title}
-    </h1>
+    </h2>
     <p class="mt-2 text-base md:text-lg font-semibold text-base-ink/90 text-center">
       {book.subtitle}
     </p>
