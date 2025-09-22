@@ -1,5 +1,6 @@
 ---
 import "../styles/tailwind.css";
+import { jsonLd } from "../data/seo";
 const {
   title = 'Book Title – Author',
   description = 'Short description of the book',
@@ -50,6 +51,7 @@ const domain = 'climateactiondaily.com';
       imagesrcset="/images/climate-change.png 1024w"
       imagesizes="100vw"
       type="image/png">
+    <script type="application/ld+json">{ JSON.stringify(jsonLd.book) }</script>
   </head>
   <body class="bg-base-bg text-base-ink font-sans antialiased">
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white px-3 py-2 rounded">

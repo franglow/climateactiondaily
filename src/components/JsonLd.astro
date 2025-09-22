@@ -1,7 +1,21 @@
 ---
-interface Props { data: any }
-const { data } = Astro.props;
+interface Props { data: any; id?: string }
+const { data, id = 'deferred-schema' } = Astro.props;
 ---
-<script type="application/ld+json">
+
+<template id={id} type="application/ld+json">
   {JSON.stringify(data)}
+</template>
+
+<script is:inline>
+    // Delay adding the JSON-LD to avoid blocking rendering
+  setTimeout(() => {
+    const tpl = document.getElementById('{id}');
+    if (tpl) {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = tpl.innerHTML;
+      document.head.appendChild(script);
+    }
+  }, 500); 
 </script>

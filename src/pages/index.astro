@@ -50,6 +50,6 @@ const amazonOnly = retailers.filter(r => r.name.toLowerCase().startsWith("amazon
   <!-- 5) CTA again -->
   <CtaPanel title={`Get Your Copy of ${pageTitle}`} retailers={amazonOnly} />
 
-  <JsonLd data={jsonLd.itemList} />
-  <JsonLd data={jsonLd.book} />
+  <!-- Inject itemList schema non-blocking -->
+  <JsonLd data={jsonLd.itemList} id="itemlist-schema" />
 </BaseLayout>
