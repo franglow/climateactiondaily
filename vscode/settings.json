@@ -1,0 +1,15 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "tailwindCSS.includeLanguages": {
+    "astro": "html"
+  },
+  "files.associations": {
+    "*.astro": "astro"
+  },
+  "css.validate": false, 
+  "scss.validate": false,
+  "editor.quickSuggestions": {
+    "strings": true
+  }
+}
