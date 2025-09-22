@@ -1,13 +1,14 @@
-# 🌍 ClimateActionDaily
+# 🌍 ClimateActionDaily (v1)
 
 A clean, accessible, and fast Astro landing page for the book  
 **“Climate Change: A Guide to Everyday Action”**
 
-This project delivers a fully responsive, SEO-optimized, and accessibility-friendly static site built with Astro and Tailwind CSS. It’s designed to communicate practical climate solutions in a calm, inviting tone — aligned with the values of mindfulness, sustainability, and clear design.
+This is **Version 1 (MVP)** of the project — a stable and production-ready base that delivers the essentials: responsive design, accessibility, and SEO.  
+It’s intentionally kept lean so we can iterate and scale in future versions (adding features, pages, and enhancements without breaking the foundation).
 
 ---
 
-## ✨ Features
+## ✨ Features in v1
 
 - ⚡️ **Astro 5** – Static site generation with island architecture
 - 🎨 **Tailwind CSS** – Utility-first CSS with a custom design system
@@ -18,6 +19,19 @@ This project delivers a fully responsive, SEO-optimized, and accessibility-frien
 - 🧹 **Prettier + Plugin Astro** – Consistent formatting across `.astro`, `.js`, etc.
 - 📦 **Production-optimized** – PurgeCSS included via Tailwind’s `content` config
 - 🔍 **Plausible Analytics** – Lightweight and privacy-friendly stats
+
+---
+
+## 🛣 Roadmap (Future Versions)
+
+Planned improvements for **v2 and beyond**:
+
+- 🌐 Multi-page structure (blog, resources, newsletter)
+- 🖼 Advanced image optimization & art direction
+- 📘 Internationalization (i18n)
+- 🔎 More SEO enhancements (schema variants, sitemap)
+- 🎯 Extended analytics & A/B testing
+- ⚙️ CI/CD pipeline and hosting optimizations
 
 ---
 
@@ -79,12 +93,6 @@ To format all files manually:
 npx prettier --write .
 ```
 
-Format runs automatically on save in VS Code if you have:
-
-- Prettier extension installed
-- `editor.formatOnSave` enabled
-- `.vscode/settings.json` included
-
 ---
 
 ## 🌐 SEO and Structured Data
@@ -130,5 +138,3 @@ This site uses [Plausible](https://plausible.io/) for lightweight, cookie-free a
 
 This project is © 2025 Fran Cortez. All rights reserved.  
 Open to reuse with permission or under custom agreement.
-
----
