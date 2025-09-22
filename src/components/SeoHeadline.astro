@@ -6,7 +6,7 @@ interface Props {
 }
 const { headline, sub, id = "intro-headline" } = Astro.props;
 ---
-<section id={id} aria-labelledby={`${id}-title`} class="mt-8 md:mt-10 my-20">
+<div id={id} aria-labelledby={`${id}-title`} class="mt-8 md:mt-10 my-20">
   <header class="max-w-5xl mx-auto px-6 md:px-8 text-center">
     <h1
       id={`${id}-title`}
@@ -19,4 +19,4 @@ const { headline, sub, id = "intro-headline" } = Astro.props;
       {sub}
     </p>
   </header>
-</section>
+</div>
