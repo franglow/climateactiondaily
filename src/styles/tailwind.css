@@ -24,14 +24,35 @@
 
 /* Buttons */
 @layer components {
-  .btn { @apply inline-flex items-center justify-center rounded-full px-5 py-3 text-base font-medium transition-colors; }
+  /* General-purpose buttons */
+  .btn {
+    @apply inline-flex items-center justify-center text-sm font-medium transition focus:outline-none;
+  }
+
   .btn-primary {
     @apply bg-[color:var(--base-prime)] text-white hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--base-prime)];
   }
+
   .btn-outline {
     @apply border border-[color:var(--base-ink)] text-[color:var(--base-ink)] hover:bg-[color:var(--base-ink)] hover:text-white;
   }
-  .btn-ghost { @apply text-[color:var(--base-ink)]/70 hover:text-[color:var(--base-ink)]; }
+
+  .btn-ghost {
+    @apply text-[color:var(--base-ink)]/70 hover:text-[color:var(--base-ink)];
+  }
+
+  /* Retailer-specific CTA buttons */
+  .btn-amazon {
+    @apply px-5 py-3 bg-[#F9BF4F] text-black border border-transparent rounded-md hover:opacity-95 focus-visible:ring-2 focus-visible:ring-black/20;
+  }
+
+  .btn-amazon-small {
+    @apply px-4 py-2 bg-[#F9BF4F] text-black border border-transparent rounded-md hover:opacity-95 focus-visible:ring-2 focus-visible:ring-black/20;
+  }
+
+  .btn-default {
+    @apply px-4 py-2 rounded-full border border-base-line bg-white hover:bg-black hover:text-white hover:border-black focus-visible:ring-2 focus-visible:ring-black/30;
+  }
 }
 
 /* Accessibility helpers */

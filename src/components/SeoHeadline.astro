@@ -1,6 +1,6 @@
 ---
 interface Props {
-  headline: string; // será el H1 de la página
+  headline: string; 
   sub: string;
   id?: string;
 }
@@ -8,10 +8,14 @@ const { headline, sub, id = "intro-headline" } = Astro.props;
 ---
 <section id={id} aria-labelledby={`${id}-title`} class="mt-8 md:mt-10 my-20">
   <header class="max-w-3xl mx-auto text-center">
-    <h1 id={`${id}-title`} class="font-serif text-3xl my-10 md:text-4xl font-bold leading-tight tracking-tight text-center max-w-5xl mx-auto px-4">
+    <h1
+      id={`${id}-title`}
+      class="font-serif text-3xl my-10 md:text-4xl font-bold leading-tight tracking-tight text-center max-w-5xl mx-auto px-4 text-[color:var(--base-ink)] contrast-more:text-[color:var(--base-ink)]"
+    >
       {headline}
     </h1>
-    <p class="mt-4 text-base md:text-lg text-base-ink/90">
+
+    <p class="mt-4 text-base md:text-lg text-[color:var(--base-ink)]/90 contrast-more:text-[color:var(--base-ink)]">
       {sub}
     </p>
   </header>

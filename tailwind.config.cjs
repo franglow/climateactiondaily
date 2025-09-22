@@ -20,6 +20,9 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'Avenir', 'Helvetica', 'Arial', 'sans-serif'],
         serif: ['"Libre Baskerville"', 'Georgia', 'serif']
+      },
+      screens: {
+        'contrast-more': { raw: '(prefers-contrast: more)' }
       }
     }
   },

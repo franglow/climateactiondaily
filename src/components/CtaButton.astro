@@ -1,0 +1,38 @@
+---
+// src/components/CtaButton.astro
+
+interface Props {
+  name: string;
+  url: string;
+  variant?: 'amazon' | 'default';
+  size?: 'small' | 'large';
+  className?: string; // optional extra classes
+}
+
+const {
+  name,
+  url,
+  variant = 'default',
+  size = 'large',
+  className = '',
+} = Astro.props;
+
+const isAmazon = variant === 'amazon';
+
+const buttonClass = isAmazon
+  ? size === 'small'
+    ? 'btn btn-amazon-small'
+    : 'btn btn-amazon'
+  : 'btn btn-default';
+---
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer nofollow sponsored"
+  aria-label={`Get the guide on ${name}`}
+  data-cta="retailer"
+  data-retailer={name}
+  class={`${buttonClass} ${className}`}
+>
+  {name}
+</a>
