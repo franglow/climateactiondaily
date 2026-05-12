@@ -1,2 +1,16 @@
-node_modules
+# Build folders
+.astro/
 dist/
+build/
+.next/
+out/
+.vercel/
+
+# Dependencies
+node_modules/
+
+# Logs and environment
+npm-debug.log*
+.env
+.env.*
+.env.local
