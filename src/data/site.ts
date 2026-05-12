@@ -15,7 +15,7 @@ export const book = {
 };
 
 export const retailers = [
-  { name: "Amazon", url: "https://www.amazon.com/dp/XXXXXXX" },
+  { name: "Amazon", url: "https://a.co/d/01kqegHR" },
 ];
 
 export const heroHeadline =
