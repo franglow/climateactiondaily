@@ -1,0 +1,77 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl: string;
+  ogImage?: string;
+  ogType?: string;
+  jsonLd?: object | object[];
+  /** X/Twitter handle with or without leading @; omit to skip twitter:site */
+  twitterSite?: string;
+  /** X/Twitter handle with or without leading @; omit to skip twitter:creator */
+  twitterCreator?: string;
+}
+
+const SITE_NAME = 'Climate Action Daily';
+const DEFAULT_OG_IMAGE = 'https://climateactiondaily.com/og.jpg';
+const DEFAULT_LOCALE = 'en_US'; 
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  ogImage = DEFAULT_OG_IMAGE,
+  ogType = 'website',
+  jsonLd,
+  twitterSite,
+  twitterCreator,
+} = Astro.props;
+
+// Serialize JSON-LD — support single object or array
+const jsonLdScripts = jsonLd
+  ? Array.isArray(jsonLd)
+    ? jsonLd
+    : [jsonLd]
+  : [];
+---
+
+<!-- Primary Meta -->
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Open Graph -->
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={SITE_NAME} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImage.startsWith('http') ? ogImage : `https://climateactiondaily.com${ogImage}`} />
+<meta property="og:locale" content={DEFAULT_LOCALE} />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage.startsWith('http') ? ogImage : `https://climateactiondaily.com${ogImage}`} />
+{twitterSite && (
+  <meta
+    name="twitter:site"
+    content={twitterSite.startsWith('@') ? twitterSite : `@${twitterSite}`}
+  />
+)}
+{twitterCreator && (
+  <meta
+    name="twitter:creator"
+    content={twitterCreator.startsWith('@') ? twitterCreator : `@${twitterCreator}`}
+  />
+)}
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico" />
+<meta name="theme-color" content="#0f1a1a" />
+<meta name="robots" content="index, follow" />
+
+<!-- Structured Data (JSON-LD) -->
+{jsonLdScripts.map((schema) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}

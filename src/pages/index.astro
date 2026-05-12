@@ -5,19 +5,31 @@ import AboutSection from "../components/AboutSection.astro";
 import TenTeachings from "../components/TenTeachings.astro";
 import CtaPanel from "../components/CtaPanel.astro";
 import SeoHeadline from "../components/SeoHeadline.astro";
-import JsonLd from "../components/JsonLd.astro";
 import { book, retailers } from "../data/site";
 import { heroHeadline, heroSub } from "../data/site";
 import { teachings_en } from "../data/teachings";
-import { jsonLd } from "../data/seo";
+import { getPersonSchema, getWebSiteSchema, getBookSchema, getItemListSchema } from "../utils/schema";
 
 const pageTitle = book.title;
 const pageDesc  = book.description;
 const ogImage   = book.ogImage;
 
 const amazonOnly = retailers.filter(r => r.name.toLowerCase().startsWith("amazon"));
+
+const schemas = [
+  getPersonSchema(),
+  getWebSiteSchema(),
+  getBookSchema({
+    title: book.title,
+    subtitle: book.subtitle,
+    description: book.longDesc.join(" "),
+    coverUrl: book.coverUrl,
+    ogImage: book.ogImage,
+  }),
+  getItemListSchema("10 Things This Book Will Teach You", teachings_en),
+];
 ---
-<BaseLayout title={pageTitle} description={pageDesc} ogImage={ogImage} lang="en">
+<BaseLayout title={pageTitle} description={pageDesc} ogImage={ogImage} lang="en" jsonLd={schemas}>
   <!-- 1) Cover centered -->
   <section class="pt-10 md:pt-16">
     <div class="max-w-md mx-auto">
@@ -49,6 +61,4 @@ const amazonOnly = retailers.filter(r => r.name.toLowerCase().startsWith("amazon
   <!-- 5) CTA again -->
   <CtaPanel title={`Get Your Copy of ${pageTitle}`} retailers={amazonOnly} />
 
-  <!-- Inject itemList schema non-blocking -->
-  <JsonLd data={jsonLd.itemList} id="itemlist-schema" />
 </BaseLayout>
