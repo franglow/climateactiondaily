@@ -1,0 +1,1111 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { posts, blog } from "../../data/posts";
+import { book, retailers } from "../../data/site";
+import { getBlogPostingSchema, getBreadcrumbSchema } from "../../utils/schema";
+
+const post = posts.find((p) => p.slug === "fifteen-thousand-people-five-hours")!;
+
+const schemas = [
+  getBlogPostingSchema({
+    slug: post.slug,
+    title: post.title,
+    description: post.description,
+    datePublished: post.date,
+    ogImage: book.ogImage,
+    wordCount: 2900,
+    keywords: post.tags,
+  }),
+  getBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: blog.name, path: "/blog/" },
+    { name: post.title, path: `/blog/${post.slug}/` },
+  ]),
+];
+
+const amazon = retailers.find((r) => r.name.toLowerCase().startsWith("amazon"));
+---
+<BaseLayout
+  title={`${post.title} — ${blog.name}`}
+  description={post.description}
+  lang="en"
+  ogType="article"
+  publishedTime={post.date}
+  articleType={true}
+  jsonLd={schemas}
+>
+  <article class="essay">
+    <nav aria-label="Breadcrumb" class="pt-8 text-xs text-[color:var(--base-ink)]/55">
+      <a href="/blog/" class="underline underline-offset-4 hover:text-[color:var(--base-prime)]">
+        {blog.name}
+      </a>
+      <span aria-hidden="true"> / </span>
+      <span>Essay</span>
+    </nav>
+
+    <header class="essay-hero">
+      <p class="eyebrow">Essay</p>
+      <h1>{post.title}</h1>
+      <p class="standfirst">{post.subtitle}</p>
+
+      <p class="byline">
+        By Fran C. Wood
+        <span aria-hidden="true">·</span>
+        <time datetime={post.date}>{post.dateLabel}</time>
+        <span aria-hidden="true">·</span>
+        {post.readingMinutes} min read
+      </p>
+
+      <div class="figure">
+        <span class="figure-num">75,000</span>
+        <span class="figure-cap">
+          hours of human life in a square on a Friday afternoon. Laid end to
+          end, without sleeping, that is eight and a half years of continuous
+          time.
+        </span>
+      </div>
+    </header>
+
+    <div class="essay-body">
+      <p class="lede">
+        Fifteen thousand people. Five hours each. That is a medium-sized climate
+        demonstration.
+      </p>
+
+      <p>
+        And the question I asked myself — crude, probably unfair — was this: what
+        if those same fifteen thousand people spent that energy living
+        differently instead?
+      </p>
+
+      <p>
+        I don't mean five hours. I mean sustained attention. Paying attention to
+        what they eat. To what goes into the water when they wash their hair,
+        when they wash their clothes. Asking, before buying a shirt, whether it
+        is actually needed or whether there are already three in the wardrobe
+        doing exactly the same job. Choosing a brand for what the brand does
+        rather than what the brand says. Small things, no drama, no cameras,
+        nobody watching.
+      </p>
+
+      <p>Which one weighs more?</p>
+
+      <p>
+        For a while I was convinced that question had an answer, and that the
+        answer was uncomfortable for the people marching. I was wrong — though
+        not entirely. The question was badly posed. The discomfort, on the other
+        hand, was legitimate. It was just pointing somewhere else.
+      </p>
+
+      <section>
+        <h2><span class="snum">01</span>Why the question is badly posed</h2>
+
+        <p>
+          The mistake is a category error. A demonstration is not trying to
+          reduce the emissions of the fifteen thousand people who show up. That
+          was never the point. Its mechanism is different, and it is indirect:
+        </p>
+
+        <p class="chain">
+          fifteen thousand people <b>&rarr;</b> a visible event <b>&rarr;</b> media
+          <b>&rarr;</b> public conversation <b>&rarr;</b> political pressure
+          <b>&rarr;</b> a law <b>&rarr;</b> millions of people
+        </p>
+
+        <p>Whereas living differently works like this:</p>
+
+        <p class="chain">
+          fifteen thousand people <b>&rarr;</b> fewer flights, less meat, fewer
+          cars, less consumption <b>&rarr;</b> fewer emissions
+        </p>
+
+        <p>One is an arithmetic. The other is a bet.</p>
+
+        <p>
+          Comparing the two by “how much CO<sub>2</sub> does each hour save” is
+          like comparing a seed to a lever. Individual action is measurable,
+          small and certain. Collective action is unmeasurable, uncertain and
+          potentially enormous. They are not on the same scale because they are
+          not doing the same job.
+        </p>
+
+        <p>
+          So the question is not which one yields more. It is a different
+          question, and it took me a while to find it.
+        </p>
+      </section>
+
+      <section>
+        <h2><span class="snum">02</span>Do demonstrations work? Yes, sometimes, and in strange ways</h2>
+
+        <p>
+          Worth saying before getting sceptical: there is evidence that protests
+          move things.
+        </p>
+
+        <p>
+          Start at the beginning of the chain, which is attention. King, Bentele
+          and Soule studied civil rights issues in the US Congress between 1960
+          and 1986 and found that protest activity — together with the perceived
+          legitimacy of an issue and competition from other issues — helped
+          explain how many congressional hearings were devoted to each one.
+        </p>
+
+        <p>
+          It is worth reading carefully what that result does and does not say.
+          What is measured is <em>legislative attention</em>, not legislation.
+          Protest can get a problem onto the agenda of the people who decide.
+          That is not nothing — almost nothing gets onto that agenda — but it is
+          not a law either.
+        </p>
+
+        <p>
+          Then there is the German case, which is far more specific. Fabel and
+          colleagues assembled close to four thousand climate protests from
+          2019, used mobile-phone mobility data to build a very fine-grained
+          measure of turnout, and matched it against nine hundred and sixty
+          electoral districts. Districts with higher Fridays for Future turnout
+          saw larger increases in the Green vote share. And they found evidence
+          for three mechanisms: reverse intergenerational transmission of
+          environmental attitudes — from children to parents — more Green
+          politicians talking about climate on social media, and more
+          environmental coverage in local media.
+        </p>
+
+        <p>
+          The ifo Institute estimated that around 7% of the increase in the Green
+          vote between 2019 and 2021 could be attributed to the protests: 0.45
+          percentage points of a 6.3-point rise. That is an estimate, not a
+          settled measurement, and worth treating as one. But it gives a sense of
+          the scale: real, and modest.
+        </p>
+
+        <p>
+          And now the study that dismantled my original argument, which is
+          Italian. Marini and Nocito analysed ten million used-car transactions
+          before and after Fridays for Future mobilisations in Italy, using
+          rainfall on the day of the protest as an exogenous source of variation
+          in turnout — if it rains, fewer people go, and that variation should
+          not be related to later car-buying preferences. After the
+          mobilisations: fewer cars bought, lower average emissions among those
+          bought, more low-emission vehicles and fewer high-emission ones.
+        </p>
+
+        <p class="pull">
+          The demonstration ended up changing consumption decisions. The whole
+          dichotomy collapses.
+        </p>
+
+        <p>
+          But here is a twist that forces me to correct myself, and it is more
+          interesting than my original reading. The authors tested two possible
+          mechanisms: an increase in environmental awareness, and rational
+          anticipation of stricter future regulation. The second appeared to be
+          generally more important.
+        </p>
+
+        <p>
+          In other words: people did not buy cleaner cars because the protesters
+          inspired them. They bought cleaner cars because they read the protest
+          as a signal that the state was coming to tighten the rules, and they
+          did not want to be holding an asset about to lose value.
+        </p>
+
+        <p>
+          That is colder and less romantic than what I wanted it to say. It is
+          also more solid. And it reinforces precisely the political chain —
+          protest, expectation of regulation, behaviour — over the chain of
+          contagion and good example. I note it here because it will come back,
+          and because it cuts against my own thesis.
+        </p>
+      </section>
+
+      <section>
+        <h2><span class="snum">03</span>And yet: visibility is not effectiveness</h2>
+
+        <p>
+          If the essay ended there it would be a nice story and also a lie by
+          omission.
+        </p>
+
+        <p>
+          Gethin and Pons examined the quasi-universe of US protests between 2017
+          and 2022 — fourteen protest waves covering the environment, gender,
+          race, guns, immigration and domestic and international politics — and
+          measured Twitter activity, Google searches, public opinion, voting
+          intention, election results, politicians' behaviour, and policies
+          proposed and adopted.
+        </p>
+
+        <p>
+          The title of the paper says a good deal:
+          <em>The Limited Effects of U.S. Protests</em>. They found large effects
+          on internet activity and minimal effects on everything else.
+        </p>
+
+        <p>
+          This is worth having tattooed somewhere:
+          <strong>something going viral does not mean anything changed.</strong>
+        </p>
+
+        <p>
+          There is worse. Vandeweerdt ran two pre-registered experiments — in
+          Denmark, with activists blocking a road; in the UK, disrupting a
+          sporting event. Exposure increased the likelihood that people named
+          climate change as one of their country's most important problems: +19%
+          in Denmark, +10% in the UK. But there were no significant effects on
+          climate concern or on intention to act, and a small backlash did appear
+          against the protesters' specific policy demand.
+        </p>
+
+        <p>
+          The paper's title puts it better than I can: climate disruption buys
+          salience, and it pays for it.
+        </p>
+
+        <p class="pull">
+          Salience is not persuasion. You can get everyone talking about the
+          problem without getting anyone to agree with your solution.
+        </p>
+
+        <p>
+          Even the counterintuitive finding has fine print. A study in
+          <em>Nature Sustainability</em> examined the Just Stop Oil campaign and
+          found that greater awareness of that radical group was associated with
+          increased identification with and support for Friends of the Earth, a
+          moderate group that took no part in the actions. This is the
+          <em>positive radical flank effect</em>: the radical flank makes the
+          moderate one look reasonable by contrast.
+        </p>
+
+        <p>
+          Here too I have to correct myself. It would be too categorical to say
+          that later research “showed” the effect is temporary. What we actually
+          have is evidence that <strong>radical flank effects can be positive or
+          negative depending on political context, audience characteristics and
+          how the protest is perceived.</strong> A 2025 review finds both kinds.
+          And 2026 research suggests that actively distancing oneself from
+          radical groups can increase support for moderates.
+        </p>
+
+        <p>
+          The honest conclusion is neither “protest works” nor “protest doesn't
+          work.” It is that it depends on how, when, against whom, with what
+          concrete demand, and inside what strategy. A demonstration can be
+          enormous, moving, photogenic — and change nothing at all.
+        </p>
+      </section>
+
+      <section>
+        <h2><span class="snum">04</span>The other half: is changing your life enough?</h2>
+
+        <p>No. And this needs saying with the same bluntness.</p>
+
+        <p>
+          A study of the potential of individual action in a Finnish suburb
+          concludes explicitly that voluntary individual efforts alone are not
+          sufficient to reach a carbon budget compatible with 1.5 °C: behavioural
+          change has to be combined with strong policy and technological
+          progress. It is a single suburb and should not be extrapolated to the
+          planet, but as empirical evidence of the ceiling on voluntary action it
+          does the job.
+        </p>
+
+        <p>
+          The European <em>1.5° Lifestyles</em> project studied mobility,
+          housing, food and consumption across five countries. It found that
+          moving away from car-based mobility — especially combustion cars —
+          carries one of the largest reduction potentials, followed by housing,
+          particularly renewable heating. But its underlying conclusion is the
+          one that matters here: meaningful individual change requires
+          transformation of the political-economic, technological and social
+          structures that make those lifestyles possible or difficult.
+        </p>
+
+        <p>You cannot cycle through a city that has nowhere to cycle.</p>
+
+        <p>
+          What did weaken is one of the favourite arguments against individual
+          action: the idea that tending to your own habits works as an
+          anaesthetic, that recycling makes you feel so good you stop demanding
+          anything. A longitudinal study followed 2,778 people across four annual
+          waves of an Australian survey between 2021 and 2024. Within a given
+          year, personal climate actions were associated with greater collective
+          participation and, to a lesser extent, greater support for climate
+          policy.
+        </p>
+
+        <p>
+          And here I correct myself a third time, because the precise formulation
+          matters. The defensible finding is <strong>that personal action was not
+          found to crowd out collective action.</strong> Not that it produces it:
+          the longitudinal models found little evidence of systematic carry-over
+          from one year to the next.
+        </p>
+
+        <p>
+          That is less than I would have liked. But it kills the anaesthetic
+          argument, which was the one that mattered.
+        </p>
+      </section>
+
+      <section>
+        <h2><span class="snum">05</span>How we learn, which is what I was actually asking</h2>
+
+        <p>
+          Here is the heart of it, and it has nothing to do with tonnes of
+          CO<sub>2</sub>.
+        </p>
+
+        <p>
+          Humans learn by watching. We do not learn because someone explains
+          something well. We learn because we see someone do something and see it
+          go well for them. It is an ancient mechanism, older than language, and
+          it is still the most powerful one we have.
+        </p>
+
+        <p>
+          And that is where the real difference between the two paths shows up —
+          not a difference of efficiency but of grammar.
+        </p>
+
+        <dl class="contrast">
+          <div>
+            <dt>A demonstration says</dt>
+            <dd>“We have to change.”</dd>
+          </div>
+          <div>
+            <dt>A life says</dt>
+            <dd>“Look, this is what the change looks like.”</dd>
+          </div>
+        </dl>
+
+        <p>
+          Those are two completely different speech acts. One is a demand. The
+          other is a demonstration in the older sense of the word. And
+          demonstrations move humans in a way that demands do not.
+        </p>
+
+        <p>
+          Then there is the slower, deeper level: social norms. Someone starts
+          buying clothes only when they need them. A friend does the same. Their
+          children grow up with that logic already inside them, without anyone
+          explaining it. Another friend starts asking “do I actually need this?”
+          And slowly what counts as <em>normal</em> in that group shifts. Because
+          people do not only ask what is right. We ask, almost without noticing,
+          <strong>what do people like me do.</strong>
+        </p>
+
+        <p>
+          And here comes the turn I did not expect: the demonstration also works
+          by imitation.
+        </p>
+
+        <p>
+          Someone sees fifteen thousand people marching and thinks “there are a
+          lot of people who think this way.” That changes their sense of what is
+          normal. It is exactly the same psychological engine — social influence
+          — running in a different format. The German study found precisely this:
+          children shifting their parents' attitudes. Interpersonal influence,
+          not a placard.
+        </p>
+
+        <p>
+          The difference is bandwidth and proof. The march reaches many
+          strangers, through a screen, for one day, and reaches them as an
+          assertion. Your life reaches your sister, your children, your three
+          closest friends, the people you work with, for years — and it reaches
+          them with the evidence attached.
+        </p>
+
+        <p>
+          Which produces the one thing that by now seems to me beyond argument:
+        </p>
+
+        <p class="pull">
+          If the new behaviour looks like a sacrifice, it does not spread.
+        </p>
+
+        <p>
+          There is no way around this. You do not build a mass movement by
+          offering people a worse life. If the implicit message is “give up
+          comfort, pleasure, status and wellbeing for the planet,” the capacity
+          to spread is structurally limited, however right you are. You can be
+          completely correct and completely unimitable.
+        </p>
+
+        <p>
+          Whereas if someone looks at you and thinks “this person lives well,
+          seems calm, is healthy, is not broke, and consumes a third of what I
+          consume,” the implicit message is different and it is devastating:
+          <strong>I could do that too.</strong>
+        </p>
+
+        <p>
+          That is not moralising. It is the only thing that has ever moved
+          populations.
+        </p>
+      </section>
+
+      <section>
+        <h2><span class="snum">06</span>The uncomfortable conclusion</h2>
+
+        <p>So the conclusion I arrived at, and don't entirely like, is this:</p>
+
+        <div class="thesis">
+          <p class="eyebrow">The thesis</p>
+          <p>
+            Go to the march. But if your life is not the thing you claim to be
+            fighting for, stay home.
+          </p>
+        </div>
+
+        <p>
+          It is ugly. It sounds like moral policing. And yet it has a force I
+          find hard to dismantle, because a demonstration whose participants go
+          home to live exactly the life they are denouncing is asking society to
+          do something none of them is doing. And people read that. Not
+          consciously, not as an argument — but they read it.
+        </p>
+
+        <p>
+          Put as provocatively as I can manage: <strong>the most powerful
+          activist may not be the one holding the biggest sign, but the one whose
+          life makes someone else want to change theirs.</strong>
+        </p>
+
+        <p>
+          Now I have to do that idea the work it deserves, which is to try to
+          break it.
+        </p>
+      </section>
+
+      <section>
+        <h2><span class="snum">07</span>The three arguments that nearly destroy it</h2>
+
+        <p>
+          <strong>First: it is the hypocrisy trap.</strong> “Greta took a plane.”
+          “You use a phone made of minerals.” Demanding personal purity as a
+          condition for speaking is the favourite weapon of people who want
+          nothing to change, precisely because it is an unsatisfiable condition.
+          Nobody lives coherently inside an industrial economy. Nobody. If
+          coherence is the entry ticket, nobody enters, and the demand
+          disappears — an outcome that suits exactly one side.
+        </p>
+
+        <p>
+          And there is something worse. The individual-responsibility frame did
+          not arrive on its own. Here precision matters, because the version that
+          circulates is false: <strong>BP did not invent the carbon
+          footprint.</strong> The ecological footprint concept dates from the
+          1990s and the term had earlier uses. What is documented is that
+          <strong>BP played an important role in popularising the idea of the
+          <em>personal</em> carbon footprint</strong>, through its “Beyond
+          Petroleum” campaign and an online calculator launched in 2004.
+        </p>
+
+        <p>
+          The difference between “invented” and “popularised” looks minor and
+          isn't: the first version is false and disqualifies you, the second is
+          verifiable and is enough for the argument. Which remains brutal: the
+          most effective thing the oil industry ever did was convince you the
+          problem was your shower.
+        </p>
+
+        <p>
+          My conclusion flirts with that argument. It has to be said without
+          anaesthetic.
+        </p>
+
+        <p>
+          <strong>Second: it is a class argument.</strong> “Living in harmony” is,
+          to an uncomfortable degree, purchasing power and geography. Buying
+          unpackaged, eating well, choosing non-toxic products, living somewhere
+          you can walk or cycle, having time to cook — much of that is money and
+          time. Turning personal coherence into a requirement for political
+          participation makes activism the property of those who can afford it.
+          And it excludes precisely the people who suffer most from climate
+          change, who tend to have the smallest footprints and the narrowest room
+          to manoeuvre. Telling someone renting a flat with insulation they
+          cannot change, in a city with no transit, working two jobs, to stay
+          home until they have sorted their life out is grotesque.
+        </p>
+
+        <p>
+          <strong>Third: the evidence does not support it — but less than I
+          thought.</strong> Here I have to be honest against myself twice in a
+          row.
+        </p>
+
+        <p>
+          In Germany the Green vote rose where turnout was higher, and the study
+          never asked whether those protesters lived coherently. Its evidence
+          points to other mechanisms: media coverage, politicians' communication,
+          transmission of attitudes from children to parents.
+        </p>
+
+        <p>
+          I wanted to use that as proof that personal coherence is irrelevant. It
+          isn't. <strong>A study not measuring a variable does not demonstrate
+          that the variable doesn't matter.</strong> It simply did not evaluate
+          it. This is the weakest of the three arguments, and it is better to say
+          so than to hide it behind a clever line.
+        </p>
+
+        <p>
+          What does survive is more modest and more interesting: a protest can
+          produce measurable political and social effects without our knowing
+          anything about the coherence of the people protesting. An imperfect
+          messenger does not void the message. That is not the same as saying it
+          makes no difference who carries it.
+        </p>
+      </section>
+
+      <section>
+        <h2><span class="snum">08</span>What survives</h2>
+
+        <p>
+          Understanding those three arguments does not oblige me to treat them as
+          tied with mine. They have to be weighed.
+        </p>
+
+        <p>
+          And I think the distinction that saves the idea is this:
+          <strong>personal coherence as an entry requirement is indefensible;
+          personal coherence as a multiplier is the most underused thing in
+          climate activism.</strong>
+        </p>
+
+        <p>
+          As a requirement — as a moral condition on the right to speak — the
+          thesis is wrong and should be dropped without nostalgia. It is wrong
+          strategically, because it silences the movement. It is wrong ethically,
+          because it expels the most affected. And it leans on a frame the fossil
+          industry helped install.
+        </p>
+
+        <p>
+          As a multiplier, it holds. Your life is the highest-bandwidth channel
+          you have with the people who actually know you. If your life does not
+          support what you are asking for, it is not that you lost the right to
+          ask: it is that you left your best tool in the drawer.
+        </p>
+
+        <p>
+          But there is a version of the original provocation that survives
+          intact, and it is still uncomfortable — only the accusation is a
+          different one.
+        </p>
+
+        <p>
+          There is a form of activism that is, at bottom, identity. Going to the
+          march as self-image, as belonging, as a moral purchase: five hours that
+          buy you a year of feeling on the right side. That activism does not
+          fail because it is hypocritical. It fails because it is oriented toward
+          the participant's self-perception rather than toward any mechanism of
+          change. It optimises for the feeling, not the effect. And it is easy to
+          recognise: it measures nothing, it never asks what worked last time, it
+          repeats the format because the format is the point, and it goes home
+          without anything having moved — outside or inside.
+        </p>
+
+        <p class="pull">
+          That is what my question was actually pointing at. Not hypocrisy.
+          Self-reference.
+        </p>
+
+        <p>
+          And I include myself, for what it's worth. I am writing this having
+          taken more flights than I can justify and having bought things I did
+          not need last week. I am not making the accusation from outside. There
+          is no outside.
+        </p>
+      </section>
+
+      <section>
+        <h2><span class="snum">09</span>The circuit</h2>
+
+        <p>
+          The two mechanisms are not rivals. They are a circuit, and each does
+          what the other cannot.
+        </p>
+
+        <p>
+          Collective action is what makes sustainable living <em>possible</em>.
+          It builds the bike lane, insulates the housing, changes the energy mix,
+          takes the toxic product off the shelf. And — according to the Italian
+          study — it does something more interesting still: it changes people's
+          expectations about where regulation is heading, and that alone changes
+          what they buy. Without it, living well is a sport for the disciplined
+          and well-resourced.
+        </p>
+
+        <p>
+          Personal coherence is what makes collective action <em>credible and
+          contagious</em>. It is the channel through which the demand stops being
+          a reprimand and becomes a plausible life.
+        </p>
+
+        <p>
+          But they are not symmetrical, and saying “both matter” and stopping
+          there would be exactly the comfortable draw this essay set out to
+          avoid.
+        </p>
+
+        <p>
+          If you had to pick one for humanity, you pick political action, without
+          hesitating. It is the only mechanism that operates at the scale of the
+          problem. Collective action has a very high ceiling and a floor of zero.
+          Individual action has a low ceiling and a guaranteed floor.
+        </p>
+
+        <p>
+          Except you are not humanity. You are one person. And for one person the
+          question is not which mechanism is more efficient in the abstract, but
+          which one you can sustain for years and which one actually moves
+          somebody near you.
+        </p>
+
+        <p>
+          So the question is not whether you have earned the right to march.
+          March. The question is more uncomfortable than that:
+        </p>
+
+        <p class="pull">
+          If someone who knows you well looked closely at your life — not your
+          opinions, your life — would they want any of what they see?
+        </p>
+
+        <p>Because if the answer is no, the placard is not going to fix it.</p>
+      </section>
+
+      <section class="refs">
+        <h2>Sources</h2>
+
+        <ol>
+          <li>
+            King, B. G., Bentele, K. G., &amp; Soule, S. A. (2007). “Protest and
+            Policymaking: Explaining Fluctuation in Congressional Attention to
+            Rights Issues, 1960–1986.” <i>Social Forces</i>, 86(1), 137–163.
+            <a href="https://doi.org/10.1353/sof.2007.0101">doi:10.1353/sof.2007.0101</a>
+            <span class="refnote">Measures legislative attention (hearings), not passage of laws.</span>
+          </li>
+          <li>
+            Fabel, M., Flückiger, M., Ludwig, M., Rainer, H., Waldinger, M., &amp;
+            Wichert, S. (2025). “The relationship between the youth-led Fridays
+            for Future climate movement and voting, politician and media
+            behaviour in Germany.” <i>Nature Human Behaviour</i>, 9, 481–495.
+            <a href="https://doi.org/10.1038/s41562-024-02075-4">doi:10.1038/s41562-024-02075-4</a>
+          </li>
+          <li>
+            ifo Institute — associated estimate: roughly 7% of the Green vote
+            increase 2019–2021 attributable to Fridays for Future (0.45 pp of
+            6.3 pp).
+            <span class="refnote">Working-paper estimate; treated as such.</span>
+          </li>
+          <li>
+            Marini, M. A., &amp; Nocito, S. (2025). “Climate activism favors
+            pro-environmental consumption.”
+            <i>European Journal of Political Economy</i>, 86, 102642.
+            <a href="https://doi.org/10.1016/j.ejpoleco.2025.102642">doi:10.1016/j.ejpoleco.2025.102642</a>
+            <span class="refnote">Dominant mechanism: rational anticipation of future regulation, above increased environmental awareness.</span>
+          </li>
+          <li>
+            Gethin, A., &amp; Pons, V. (2024, revised 2026). “The Limited Effects
+            of U.S. Protests.” NBER Working Paper No. 32342.
+          </li>
+          <li>
+            Vandeweerdt, C. (2025). “The Activist's Trade-Off: Climate Disruption
+            Buys Salience at a Cost.” <i>Political Behavior</i>.
+            <a href="https://doi.org/10.1007/s11109-025-10084-w">doi:10.1007/s11109-025-10084-w</a>
+          </li>
+          <li>
+            “Radical climate protests linked to increases in public support for
+            moderate organizations.” <i>Nature Sustainability</i> (2024).
+            <a href="https://doi.org/10.1038/s41893-024-01444-1">doi:10.1038/s41893-024-01444-1</a>
+          </li>
+          <li>
+            Subsequent evidence (2025 review; 2026 research): radical flank
+            effects can be positive or negative depending on political context,
+            audience characteristics and how the protest is perceived.
+          </li>
+          <li>
+            “Personal climate actions do not crowd out collective action and
+            policy support: longitudinal evidence.” <i>npj Climate Action</i>
+            (2026). N = 2,778, Australian survey, four annual waves 2021–2024.
+            <span class="refnote">Defensible finding: personal action does not crowd out collective action. No systematic year-to-year spillover was found.</span>
+          </li>
+          <li>
+            Fuchs, D. et al. / EU 1.5° Lifestyles Consortium (2026). “Enabling
+            1.5 °C lifestyles in Europe: lifestyle options and structural change
+            for transformation.”
+            <i>Sustainability: Science, Practice and Policy</i>, 22(1).
+            <a href="https://doi.org/10.1080/15487733.2026.2657131">doi:10.1080/15487733.2026.2657131</a>
+          </li>
+          <li>
+            “The potential of individuals to reduce greenhouse gas emissions
+            through their own actions: a case of a suburb in Finland.”
+            <i>Discover Sustainability</i> (2024).
+            <span class="refnote">Local case study; not extrapolated as a universal measurement.</span>
+          </li>
+          <li>
+            BP, “Beyond Petroleum” campaign and online carbon footprint
+            calculator (2004), developed with Ogilvy. See also 2024 academic
+            literature on carbon-footprint calculators, and Bundeszentrale für
+            politische Bildung, “Klimaschutz im Alltag.”
+            <span class="refnote">BP did not invent the concept — the ecological footprint dates from the 1990s — but played an important role in popularising the personal carbon footprint.</span>
+          </li>
+        </ol>
+
+        <p class="origin">
+          This essay was written in Spanish and translated by the author.
+        </p>
+      </section>
+    </div>
+
+    <aside class="book-cta" aria-label="About the book">
+      <h2>{book.title}</h2>
+      <p>
+        Over 100 specific actions across home energy, water, food, transport and
+        community — paired with grounding practices for the days when
+        eco-anxiety takes over. Short by design.
+      </p>
+      {amazon && (
+        <p class="cta-row">
+          <a class="btn btn-amazon" href={amazon.url} rel="noopener">
+            Get the book on Amazon
+          </a>
+        </p>
+      )}
+    </aside>
+
+    <p class="back-link">
+      <a href="/blog/">&larr; All essays in {blog.name}</a>
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .essay {
+    /* --measure is the full column including the rail. Because box-sizing is
+       border-box, the rail padding eats into it, leaving ~64ch of running text. */
+    --measure: 72ch;
+    --rail: 4.5rem;
+    padding-bottom: 4rem;
+  }
+
+  /* Centre the whole column once there is room, so the essay does not hug the
+     left edge of the 6xl container with a large empty gutter beside it. */
+  @media (min-width: 62rem) {
+    .essay {
+      max-width: calc(var(--measure) + var(--rail));
+      margin-inline: auto;
+    }
+  }
+
+  /* ---------- hero ---------- */
+
+  .essay-hero {
+    padding: 2.5rem 0 0;
+    max-width: var(--measure);
+  }
+
+  .eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--base-prime);
+    margin: 0;
+  }
+
+  .essay-hero h1 {
+    font-family: "Libre Baskerville", ui-serif, Georgia, serif;
+    font-size: clamp(2.25rem, 1.5rem + 3.4vw, 3.75rem);
+    font-weight: 700;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 0.85rem 0 0;
+  }
+
+  .standfirst {
+    font-family: "Libre Baskerville", ui-serif, Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1.05rem, 0.98rem + 0.4vw, 1.3rem);
+    line-height: 1.5;
+    color: color-mix(in srgb, var(--base-ink) 68%, transparent);
+    margin: 1rem 0 0;
+  }
+
+  .byline {
+    margin: 1.5rem 0 0;
+    font-size: 0.8125rem;
+    color: color-mix(in srgb, var(--base-ink) 55%, transparent);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .figure {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1.5rem;
+    margin: 2rem 0 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--base-line);
+    border-bottom: 1px solid var(--base-line);
+  }
+
+  .figure-num {
+    font-family: "Libre Baskerville", ui-serif, Georgia, serif;
+    font-size: clamp(1.9rem, 1.4rem + 2.2vw, 3rem);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--base-prime);
+  }
+
+  .figure-cap {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: color-mix(in srgb, var(--base-ink) 65%, transparent);
+    max-width: 34ch;
+  }
+
+  /* ---------- body ---------- */
+
+  .essay-body {
+    max-width: var(--measure);
+    font-size: 1.0625rem;
+    line-height: 1.72;
+  }
+
+  @media (min-width: 62rem) {
+    .essay-body,
+    .essay-hero,
+    .essay > nav { padding-left: var(--rail); }
+  }
+
+  .essay-body p { margin: 0 0 1.35em; }
+
+  .lede {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .essay-body section {
+    position: relative;
+    margin-top: 3.25rem;
+  }
+
+  .essay-body h2 {
+    font-family: "Libre Baskerville", ui-serif, Georgia, serif;
+    font-size: clamp(1.35rem, 1.15rem + 0.9vw, 1.85rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+    margin: 0 0 1.3rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--base-line);
+    max-width: 26ch;
+  }
+
+  .snum {
+    display: block;
+    font-size: 0.7rem;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.12em;
+    color: color-mix(in srgb, var(--base-ink) 40%, transparent);
+    margin-bottom: 0.55rem;
+  }
+
+  @media (min-width: 62rem) {
+    .snum {
+      position: absolute;
+      left: calc(var(--rail) * -1);
+      top: 1.75rem;
+      margin: 0;
+      width: calc(var(--rail) - 1.25rem);
+      text-align: right;
+    }
+  }
+
+  .essay-body strong { font-weight: 700; }
+
+  /* ---------- mechanism chains ---------- */
+
+  .chain {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    background: var(--base-cta);
+    border-left: 2px solid var(--base-prime);
+    padding: 1rem 1.15rem;
+    overflow-x: auto;
+  }
+
+  .chain b { color: var(--base-prime); font-weight: 700; }
+
+  /* ---------- the two speech acts ---------- */
+
+  .contrast {
+    display: grid;
+    gap: 1px;
+    background: var(--base-line);
+    border: 1px solid var(--base-line);
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 40rem) {
+    .contrast { grid-template-columns: 1fr 1fr; }
+  }
+
+  .contrast > div {
+    background: var(--base-cta);
+    padding: 1.4rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .contrast dt {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--base-ink) 45%, transparent);
+  }
+
+  .contrast dd {
+    margin: 0;
+    font-family: "Libre Baskerville", ui-serif, Georgia, serif;
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+
+  /* ---------- pull quote ---------- */
+
+  .pull {
+    font-family: "Libre Baskerville", ui-serif, Georgia, serif;
+    font-size: clamp(1.2rem, 1.05rem + 0.7vw, 1.55rem);
+    line-height: 1.36;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    color: var(--base-prime);
+    margin: 2.25rem 0 !important;
+    max-width: 28ch;
+  }
+
+  /* ---------- thesis ---------- */
+
+  .thesis {
+    background: var(--base-ink);
+    color: var(--base-bg);
+    margin: 2.5rem 0;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border-radius: 0.375rem;
+  }
+
+  .thesis .eyebrow {
+    color: color-mix(in srgb, var(--base-bg) 70%, var(--base-prime));
+    margin-bottom: 0.9rem;
+  }
+
+  .thesis p:last-child {
+    margin: 0;
+    font-family: "Libre Baskerville", ui-serif, Georgia, serif;
+    font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.65rem);
+    line-height: 1.36;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+  }
+
+  /* ---------- sources ---------- */
+
+  .refs h2 { max-width: none; }
+
+  .refs ol {
+    list-style: decimal;
+    padding-left: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--base-ink) 72%, transparent);
+  }
+
+  .refs a {
+    color: var(--base-prime);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    word-break: break-word;
+  }
+
+  .refnote {
+    display: block;
+    margin-top: 0.2rem;
+    font-style: italic;
+    color: color-mix(in srgb, var(--base-ink) 52%, transparent);
+  }
+
+  .origin {
+    margin-top: 1.75rem !important;
+    font-size: 0.8125rem;
+    font-style: italic;
+    color: color-mix(in srgb, var(--base-ink) 52%, transparent);
+  }
+
+  /* ---------- book CTA + back link ---------- */
+
+  .book-cta {
+    max-width: var(--measure);
+    margin: 3.5rem 0 0;
+    padding: 1.75rem;
+    background: var(--base-cta);
+    border-radius: 0.375rem;
+  }
+
+  @media (min-width: 62rem) {
+    .book-cta, .back-link { margin-left: var(--rail); }
+  }
+
+  .book-cta h2 {
+    font-family: "Libre Baskerville", ui-serif, Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .book-cta p {
+    margin: 0.75rem 0 0;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: color-mix(in srgb, var(--base-ink) 78%, transparent);
+  }
+
+  .cta-row { margin-top: 1.25rem !important; }
+
+  .back-link {
+    max-width: var(--measure);
+    margin-top: 2.5rem;
+    font-size: 0.875rem;
+  }
+
+  .back-link a {
+    color: var(--base-prime);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--base-prime);
+    outline-offset: 3px;
+  }
+</style>

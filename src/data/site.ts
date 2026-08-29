@@ -14,9 +14,25 @@ export const book = {
   ],
 };
 
+// Responsive cover art. Shared by CoverCard and by the LCP preload in
+// BaseLayout — they must stay identical or the preload is a wasted download.
+export const coverSizes = "(min-width: 768px) 340px, 80vw";
+
+export const coverWebpSrcset = [
+  "/images/climate-change-320.webp 320w",
+  "/images/climate-change-420.webp 420w",
+  "/images/climate-change-768.webp 768w",
+  "/images/climate-change-1024.webp 1024w",
+].join(", ");
+
 export const retailers = [
   { name: "Amazon", url: "https://a.co/d/01kqegHR" },
 ];
+
+export const contact = {
+  author: "Fran C. Wood",
+  email: "info@climateactiondaily.com",
+};
 
 export const heroHeadline =
   "Climate Change: A Guide to Everyday Action. Practical Steps for Sustainable Living";
