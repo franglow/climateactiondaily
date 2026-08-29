@@ -1,26 +1,37 @@
 ---
-import { Image } from 'astro:assets';
+// Images live in public/, which Astro's <Image> cannot optimize — it emitted the
+// 621 KB PNG and ignored `widths`. Hand-built <picture> so the pre-generated
+// webp variants are actually used. The srcset/sizes here must stay in step with
+// the LCP preload in BaseLayout.astro.
+import { coverSizes, coverWebpSrcset } from '../data/site';
+
+interface Props {
+  src?: string;
+  alt?: string;
+  eager?: boolean;
+}
+
 const {
-  src = '/images/climate-change.webp',
+  src = '/images/climate-change.png',
   alt = 'Cover of the book',
   eager = true,
 } = Astro.props;
-
-const sizes = "(min-width: 768px) 340px, 80vw";
 ---
 
-<figure>
+<figure class="m-0">
   <div class="w-full max-w-[240px] md:max-w-[340px] mx-auto overflow-hidden rounded-2xl">
-    <Image
-      src={src}
-      alt={alt}
-      sizes={sizes}
-      widths={[320, 480, 768, 1024]}
-      width={768}
-      height={1024}
-      class="w-full h-full object-cover"
-      loading={eager ? 'eager' : 'lazy'}
-      priority={eager}
-    />
+    <picture>
+      <source type="image/webp" srcset={coverWebpSrcset} sizes={coverSizes} />
+      <img
+        src={src}
+        alt={alt}
+        width="768"
+        height="1024"
+        class="w-full h-auto object-cover"
+        loading={eager ? 'eager' : 'lazy'}
+        decoding={eager ? 'sync' : 'async'}
+        fetchpriority={eager ? 'high' : 'auto'}
+      />
+    </picture>
   </div>
 </figure>

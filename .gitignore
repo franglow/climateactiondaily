@@ -15,5 +15,12 @@ npm-debug.log*
 .env.*
 .env.local
 
-# Content & Drafts
+# Content & Drafts — internal only, never deployed.
+# These live outside public/ so Astro never serves them; these rules keep them
+# out of the repo as well. The trailing-space variant is deliberate: the folder
+# was once named "marketing " and the plain pattern silently failed to match it.
 marketing/
+marketing /
+**/marketing/
+.DS_Store
+**/.DS_Store

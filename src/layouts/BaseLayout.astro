@@ -1,6 +1,7 @@
 ---
 import "../styles/tailwind.css";
 import SEOHead from "../components/seo/SEOHead.astro";
+import { contact, coverSizes, coverWebpSrcset } from "../data/site";
 
 interface Props {
   title?: string;
@@ -8,6 +9,14 @@ interface Props {
   ogImage?: string;
   lang?: string;
   jsonLd?: object | object[];
+  /** 'article' on blog posts so Open Graph reports the right type */
+  ogType?: string;
+  /** Preload the book cover. Only true on pages where it is the LCP element. */
+  preloadCover?: boolean;
+  /** Load Libre Baskerville 400 + italic. Only needed on long-form pages. */
+  articleType?: boolean;
+  /** ISO date, emitted as article:published_time */
+  publishedTime?: string;
 }
 
 const {
@@ -16,10 +25,26 @@ const {
   ogImage = '/og.jpg',
   lang = 'en',
   jsonLd,
+  ogType = 'website',
+  preloadCover = false,
+  articleType = false,
+  publishedTime,
 } = Astro.props;
 
 const canonicalUrl = Astro.url.href;
 const domain = 'climateactiondaily.com';
+
+// Long-form pages need regular and italic serif; the landing page only ever
+// renders headings, so it keeps the single-weight request.
+const fontHref = articleType
+  ? 'https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap'
+  : 'https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap';
+
+const navLinks = [
+  { href: '/', label: 'The book' },
+  { href: '/blog/', label: 'Groundwork' },
+];
+const currentPath = Astro.url.pathname;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -33,39 +58,82 @@ const domain = 'climateactiondaily.com';
       description={description}
       canonicalUrl={canonicalUrl}
       ogImage={ogImage}
+      ogType={ogType}
+      publishedTime={publishedTime}
       jsonLd={jsonLd}
     />
 
     <!-- Fonts with font-display: swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+    <link href={fontHref} rel="stylesheet">
 
     <!-- Plausible (analytics) -->
-    <script defer data-domain={domain} src="https://plausible.io/js/script.js"></script>
+    <script is:inline defer data-domain={domain} src="https://plausible.io/js/script.js"></script>
 
-    <link rel="preload"
-          as="image"
-          href="/images/climate-change-320.webp"
-          imagesrcset="/images/climate-change-320.webp 320w, /images/climate-change-480.webp 480w, /images/climate-change-768.webp 768w, /images/climate-change-1024.webp 1024w"
-          imagesizes="(min-width: 768px) 340px, 80vw">
-    <link rel="preload"
-      as="image"
-      href="/images/cover.png"
-      imagesrcset="/images/climate-change.png 1024w"
-      imagesizes="100vw"
-      type="image/png">
+    {preloadCover && (
+      <link rel="preload"
+            as="image"
+            type="image/webp"
+            href="/images/climate-change-320.webp"
+            imagesrcset={coverWebpSrcset}
+            imagesizes={coverSizes}>
+    )}
   </head>
   <body class="bg-base-bg text-base-ink font-sans antialiased">
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white px-3 py-2 rounded">
       Skip to main content
     </a>
+
+    <header class="border-b border-[color:var(--base-line)]">
+      <nav aria-label="Primary" class="mx-auto max-w-6xl px-4 md:px-6 py-4 flex items-center justify-between gap-6">
+        <a
+          href="/"
+          class="font-serif text-sm md:text-base font-bold tracking-tight hover:text-[color:var(--base-prime)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:var(--base-prime)]"
+        >
+          Climate Action Daily
+        </a>
+        <ul class="flex items-center gap-5 text-sm">
+          {navLinks.map((link) => {
+            const isCurrent =
+              link.href === '/'
+                ? currentPath === '/'
+                : currentPath.startsWith(link.href);
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  aria-current={isCurrent ? 'page' : undefined}
+                  class:list={[
+                    'underline-offset-4 hover:text-[color:var(--base-prime)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:var(--base-prime)]',
+                    isCurrent
+                      ? 'font-semibold text-[color:var(--base-prime)] underline decoration-[color:var(--base-prime)]'
+                      : 'text-[color:var(--base-ink)]/75',
+                  ]}
+                >
+                  {link.label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </header>
+
     <main id="main" class="mx-auto max-w-6xl px-4 md:px-6">
       <slot />
     </main>
     <footer class="border-t border-base-line bg-white/70 mt-12">
-      <div class="mx-auto max-w-6xl px-4 md:px-6 py-8 text-sm text-base-subtle">
-        © {new Date().getFullYear()} Fran C. Wood
+      <div class="mx-auto max-w-6xl px-4 md:px-6 py-8 text-sm text-base-subtle flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
+        <p>© {new Date().getFullYear()} {contact.author}</p>
+        <p>
+          <a
+            href={`mailto:${contact.email}`}
+            class="underline decoration-base-line underline-offset-4 hover:text-base-ink hover:decoration-base-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-base-prime"
+          >
+            {contact.email}
+          </a>
+        </p>
       </div>
     </footer>
   </body>
