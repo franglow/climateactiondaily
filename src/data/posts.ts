@@ -37,7 +37,7 @@ export const posts: Post[] = [
     description:
       'Is it better to march for five hours or to live differently for years? The evidence answers — and then complicates the question.',
     excerpt:
-      'Seventy-five thousand hours of human life in a square on a Saturday afternoon. What if those same people spent that energy living differently instead? The research answers the question, then dismantles it — and what survives is a more uncomfortable accusation than hypocrisy.',
+      'Seventy-five thousand hours of human life in a square on a Friday afternoon. What if those same people spent that energy living differently instead? The research answers the question, then dismantles it — and what survives is a more uncomfortable accusation than hypocrisy.',
     date: '2026-08-12',
     dateLabel: '12 August 2026',
     readingMinutes: 13,
